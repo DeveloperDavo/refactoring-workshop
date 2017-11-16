@@ -5,8 +5,11 @@ describe("index", () => {
     index = new Index();
   });
 
-  it("should determine tax rate to be 20% for income less than 20k", () => {
-    const income = 19999;
-    expect(index.determineTaxRateFromIncome(income)).toBe(0.2);
+  it("should determine tax rate from income", () => {
+    expect(index.determineTaxRateFromIncome(19999)).toBe(0);
+    expect(index.determineTaxRateFromIncome(20000)).toBe(0.2);
+    expect(index.determineTaxRateFromIncome(60000)).toBe(0.37);
+    expect(index.determineTaxRateFromIncome(100000)).toBe(0.55);
+    expect(index.determineTaxRateFromIncome(100001)).toBe(0.55);
   });
 });
