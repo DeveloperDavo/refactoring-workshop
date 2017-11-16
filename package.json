@@ -5,10 +5,14 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "jasmine": "^2.8.0"
+    "jasmine": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "karma start"
   },
   "keywords": [],
   "author": "",
