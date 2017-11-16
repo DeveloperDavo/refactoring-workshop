@@ -23,4 +23,15 @@ describe("index", () => {
     expect(index.determineTaxRateFromIncome(100000, taxClass)).toBeCloseTo(0.55 * taxRate);
     expect(index.determineTaxRateFromIncome(100001, taxClass)).toBeCloseTo(0.55 * taxRate);
   });
+
+  it("should determine tax rate from income when family", () => {
+    const taxClass = 'family';
+    const taxRate = 0.90;
+    expect(index.determineTaxRateFromIncome(19999, taxClass)).toBeCloseTo(0);
+    expect(index.determineTaxRateFromIncome(20000, taxClass)).toBeCloseTo(0.2 * taxRate);
+    expect(index.determineTaxRateFromIncome(60000, taxClass)).toBeCloseTo(0.37 * taxRate);
+    expect(index.determineTaxRateFromIncome(100000, taxClass)).toBeCloseTo(0.55 * taxRate);
+    expect(index.determineTaxRateFromIncome(100001, taxClass)).toBeCloseTo(0.55 * taxRate);
+  });
+
 });

@@ -4,6 +4,8 @@ class Index {
     let taxRate = 1;
     if (taxClass === 'couple') {
       taxRate = 0.95;
+    } else if (taxClass === 'family') {
+      taxRate = 0.9;
     }
 
     if (income < 20000) {
