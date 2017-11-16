@@ -1,5 +1,12 @@
 describe("index", () => {
-  it("should return true", () => {
-    expect(true).toBe(true);
+  const Index = require ('../src/Index');
+  let index;
+
+  beforeEach(() => {
+    index = new Index();
+  });
+
+  it("Index should exist", () => {
+    expect(index).toBeTruthy();
   });
 });
