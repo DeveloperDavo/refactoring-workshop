@@ -1,6 +1,6 @@
 class Index {
 
-  determineTaxRateFromIncome(income, taxClass) {
+  determineIncomeTaxRate(income, taxClass) {
     let taxRate = 1;
     if (taxClass === 'couple') {
       taxRate = 0.95;
