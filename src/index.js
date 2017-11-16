@@ -1,20 +1,25 @@
 class Index {
 
-  determineTaxRateFromIncome(income) {
+  determineTaxRateFromIncome(income, taxClass) {
+    let taxRate = 1;
+    if (taxClass === 'couple') {
+      taxRate = 0.95;
+    }
+
     if (income < 20000) {
       return 0;
     }
 
     if (income < 60000) {
-      return 0.2;
+      return 0.2 * taxRate;
     }
 
     if (income < 100000) {
-      return 0.37;
+      return 0.37 * taxRate;
     }
 
     if (income >= 100000) {
-      return 0.55;
+      return 0.55 * taxRate;
     }
 
   }
