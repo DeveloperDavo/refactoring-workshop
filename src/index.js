@@ -1,4 +1,8 @@
 class Index {
+  calculateTax(income, taxClass) {
+    return income * this.determineIncomeTaxRate(income, taxClass);
+
+  }
 
   determineIncomeTaxRate(income, taxClass) {
     let taxRate = 1;
