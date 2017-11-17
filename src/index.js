@@ -1,8 +1,14 @@
 class Index {
   calculateTax(income, taxClass) {
-    let classTaxRate = this.determineClassTaxRate(taxClass);
-    let incomeTaxRate = this.determineIncomeTaxRate(income);
+    const classTaxRate = this.determineClassTaxRate(taxClass);
+    const incomeTaxRate = this.determineIncomeTaxRate(income);
     return income * classTaxRate * incomeTaxRate;
+  }
+
+  calculateCharity(incomeAfterTax, taxClass) {
+    const classTaxRate = this.determineClassTaxRate(taxClass);
+    const charityRate = this.determineCharityRate(incomeAfterTax);
+    return incomeAfterTax * classTaxRate * charityRate;
   }
 
   determineIncomeTaxRate(income) {
@@ -40,20 +46,20 @@ class Index {
 
   }
 
-  determineCharityRate(netIncome) {
-    if (netIncome < 20000) {
+  determineCharityRate(incomeAfterTax) {
+    if (incomeAfterTax < 20000) {
       return 0;
     }
 
-    if (netIncome < 60000) {
+    if (incomeAfterTax < 60000) {
       return 0.02;
     }
 
-    if (netIncome < 100000) {
+    if (incomeAfterTax < 100000) {
       return 0.037;
     }
 
-    if (netIncome >= 100000) {
+    if (incomeAfterTax >= 100000) {
       return 0.055;
     }
   }
