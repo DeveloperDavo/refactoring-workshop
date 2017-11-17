@@ -1,45 +1,65 @@
 class Index {
+
+  /**
+   * Calculates the income after taxes and paying charity for one year.
+   * Income tax is determined by the tax class and income before tax
+   * and charity is determined by the the tax and income before tax.
+   *
+   *
+   * @param income - income before tax
+   * @param taxClass - single, couple or family
+   * @returns {number} income after taxes and charity as a number
+   */
   calculate(income, taxClass) {
-    let classTaxRate = 1;
+
+    // calculate class rate
+    let rate1 = 1;
     if (taxClass === 'single') {
-      classTaxRate = 1;
+      rate1 = 1;
     }
 
     if (taxClass === 'couple') {
-      classTaxRate = 0.95;
+      rate1 = 0.95;
     }
 
     if (taxClass === 'family') {
-      classTaxRate = 0.9;
+      rate1 = 0.9;
     }
 
-    let incomeTaxRate = 0;
+    // calculate income tax rate
+    let rate2 = 0;
     if (income < 20000) {
-      incomeTaxRate = 0;
+      rate2 = 0;
     } else if (income < 60000) {
-      incomeTaxRate = 0.2;
+      rate2 = 0.2;
     } else if (income < 100000) {
-      incomeTaxRate = 0.37;
+      rate2 = 0.37;
     } else if (income >= 100000) {
-      incomeTaxRate = 0.55;
+      rate2 = 0.55;
     }
 
-    const tax = income * classTaxRate * incomeTaxRate;
-    const incomeAfterTax = income - tax;
+    // calculate income tax
+    const tax = income * rate1 * rate2;
 
-    let charityRate = 0;
+    // calculate income after tax
+    const leftOver = income - tax;
+
+    // calculate charity rate
+    let rate3 = 0;
     if (income < 20000) {
-      charityRate = 0;
+      rate3 = 0;
     } else if (income < 60000) {
-      charityRate = 0.02;
+      rate3 = 0.02;
     } else if (income < 100000) {
-      charityRate = 0.037;
+      rate3 = 0.037;
     } else if (income >= 100000) {
-      charityRate = 0.055;
+      rate3 = 0.055;
     }
 
-    const charity = income * classTaxRate * charityRate;
-    
-    return incomeAfterTax - charity;
+    // calculate charity
+    const charity = income * rate1 * rate3;
+
+    // calculate net income
+    return leftOver - charity;
   }
 }
