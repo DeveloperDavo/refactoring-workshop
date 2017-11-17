@@ -37,5 +37,24 @@ class Index {
     if (taxClass === 'family') {
       return 0.9;
     }
+
+  }
+
+  determineCharityRate(netIncome) {
+    if (netIncome < 20000) {
+      return 0;
+    }
+
+    if (netIncome < 60000) {
+      return 0.02;
+    }
+
+    if (netIncome < 100000) {
+      return 0.037;
+    }
+
+    if (netIncome >= 100000) {
+      return 0.055;
+    }
   }
 }
