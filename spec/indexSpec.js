@@ -5,6 +5,13 @@ describe("index", () => {
     index = new Index();
   });
 
+  it("should calculate net income", () => {
+    expect(index.calculateNetIncome(19000, 'family')).toBe(19000);
+    expect(index.calculateNetIncome(35000, 'single')).toBeCloseTo(35000 - (0.2 + 0.02) * 35000);
+    expect(index.calculateNetIncome(61000, 'couple')).toBeCloseTo(61000 - (0.37 + 0.037) * 61000 * 0.95);
+    expect(index.calculateNetIncome(1000000, 'family')).toBeCloseTo(1000000 - (0.55 + 0.055) * 1000000 * 0.90);
+  });
+
   it("should calculate charity", () => {
     expect(index.calculateCharity(19000, 'family')).toBe(0);
     expect(index.calculateCharity(35000, 'single')).toBeCloseTo(0.02 * 35000);
