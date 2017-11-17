@@ -13,64 +13,33 @@ class Index {
       classTaxRate = 0.9;
     }
 
-    const incomeTaxRate = this.determineIncomeTaxRate(income);
+    let incomeTaxRate = 0;
+    if (income < 20000) {
+      incomeTaxRate = 0;
+    } else if (income < 60000) {
+      incomeTaxRate = 0.2;
+    } else if (income < 100000) {
+      incomeTaxRate = 0.37;
+    } else if (income >= 100000) {
+      incomeTaxRate = 0.55;
+    }
+
     const tax = income * classTaxRate * incomeTaxRate;
     const incomeAfterTax = income - tax;
-    const charityRate = this.determineCharityRate(income);
+
+    let charityRate = 0;
+    if (income < 20000) {
+      charityRate = 0;
+    } else if (income < 60000) {
+      charityRate = 0.02;
+    } else if (income < 100000) {
+      charityRate = 0.037;
+    } else if (income >= 100000) {
+      charityRate = 0.055;
+    }
+
     const charity = income * classTaxRate * charityRate;
+    
     return incomeAfterTax - charity;
-  }
-
-  determineIncomeTaxRate(income) {
-
-    if (income < 20000) {
-      return 0;
-    }
-
-    if (income < 60000) {
-      return 0.2;
-    }
-
-    if (income < 100000) {
-      return 0.37;
-    }
-
-    if (income >= 100000) {
-      return 0.55;
-    }
-
-  }
-
-  determineClassTaxRate(taxClass) {
-    if (taxClass === 'single') {
-      return 1;
-    }
-
-    if (taxClass === 'couple') {
-      return 0.95;
-    }
-
-    if (taxClass === 'family') {
-      return 0.9;
-    }
-
-  }
-
-  determineCharityRate(income) {
-    if (income < 20000) {
-      return 0;
-    }
-
-    if (income < 60000) {
-      return 0.02;
-    }
-
-    if (income < 100000) {
-      return 0.037;
-    }
-
-    if (income >= 100000) {
-      return 0.055;
-    }
   }
 }
