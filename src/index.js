@@ -1,19 +1,24 @@
 class Index {
-  calculateNetIncome(income, taxClass) {
-    const incomeAfterTax = income - this.calculateTax(income, taxClass);
-    return incomeAfterTax - this.calculateCharity(income, taxClass);
-  }
+  calculate(income, taxClass) {
+    let classTaxRate = 1;
+    if (taxClass === 'single') {
+      classTaxRate = 1;
+    }
 
-  calculateTax(income, taxClass) {
-    const classTaxRate = this.determineClassTaxRate(taxClass);
+    if (taxClass === 'couple') {
+      classTaxRate = 0.95;
+    }
+
+    if (taxClass === 'family') {
+      classTaxRate = 0.9;
+    }
+
     const incomeTaxRate = this.determineIncomeTaxRate(income);
-    return income * classTaxRate * incomeTaxRate;
-  }
-
-  calculateCharity(income, taxClass) {
-    const classTaxRate = this.determineClassTaxRate(taxClass);
+    const tax = income * classTaxRate * incomeTaxRate;
+    const incomeAfterTax = income - tax;
     const charityRate = this.determineCharityRate(income);
-    return income * classTaxRate * charityRate;
+    const charity = income * classTaxRate * charityRate;
+    return incomeAfterTax - charity;
   }
 
   determineIncomeTaxRate(income) {
